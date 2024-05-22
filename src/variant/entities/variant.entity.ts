@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { VariantData } from 'src/variant-data/entities/variant-data.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity({ name: 'variant' })
 export class Variant {
@@ -31,4 +32,5 @@ export class Variant {
 
   @UpdateDateColumn()
   updatedOn: Date;
+
 }

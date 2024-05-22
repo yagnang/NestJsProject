@@ -7,6 +7,6 @@ import { Variant } from './entities/variant.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Variant])],
   controllers: [VariantController],
-  providers: [VariantService],
+  providers: [VariantService]
 })
 export class VariantModule {}

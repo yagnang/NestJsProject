@@ -40,23 +40,41 @@ export class SkuService {
 
   async findOne(id: string) {
     try {
+      const exist = await this.skuRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
       return await this.skuRepository.findOne({ where: { id } });
     } catch (error) {
       throw new Error('Failed to find variant');
     }
   }
 
-  update(id: string, updateSkuDto: UpdateSkuDto) {
+  async update(id: string, updateSkuDto: UpdateSkuDto) {
     try {
-      return this.skuRepository.update(id, updateSkuDto);
+      const exist = await this.skuRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.skuRepository.update(id, updateSkuDto);
     } catch (error) {
       console.log(error);
     }
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     try {
-      return this.skuRepository.delete(id)
+      const exist = await this.skuRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.skuRepository.delete(id)
         ;
     } catch (error) {
       console.log(error);

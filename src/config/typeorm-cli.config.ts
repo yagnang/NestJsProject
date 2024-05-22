@@ -16,7 +16,7 @@ export const AppDataSource = new DataSource({
   database: 'pgWithNest',
   logging: true,
   migrations: ['src/migrations/*.ts'],
-  entities: [Variant]
+  entities: []
   // synchronize: configService.get<boolean>('DB_SYNC'),
 })
 

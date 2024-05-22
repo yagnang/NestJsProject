@@ -6,10 +6,10 @@ export class Sku {
     id: string;
 
     @Column('json', { default: '{}' })
-    nameLang: object;
+    nameLang: any;
 
     @Column('json', { nullable: true, default: '{}' })
-    shortDescription: object;
+    shortDescription: any;
 
     @Column({ type: 'boolean', nullable: true })
     active: boolean;
@@ -36,7 +36,7 @@ export class Sku {
     variantsData: string;
 
     @Column('json', { default: '{}' })
-    longDescription: object;
+    longDescription: any;
 
     @Column({ type: 'varchar', nullable: true })
     approvedBy: string;

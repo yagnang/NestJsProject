@@ -1,9 +1,6 @@
-import { Exclude, Expose } from 'class-transformer';
 import { IsNotEmpty, IsOptional, IsString, IsBoolean, IsObject, IsDefined } from 'class-validator';
 
-@Exclude()
 export class CreateSkuDto {
-    @Expose()
     @IsNotEmpty()
     @IsDefined()
     @IsObject()

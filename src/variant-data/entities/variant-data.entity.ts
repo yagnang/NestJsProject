@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Variant } from 'src/variant/entities/variant.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity({ name: 'variant_data' })
 export class VariantData {
@@ -38,7 +39,7 @@ export class VariantData {
     @Column({ type: 'varchar', length: 255, nullable: true })
     hex: string;
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar' })
     variant_id: string;
 
     @Column({ type: 'varchar', length: 255, nullable: true })
@@ -55,4 +56,5 @@ export class VariantData {
 
     @Column({ type: 'varchar', length: 255, nullable: true })
     mobileImage: string;
+
 }

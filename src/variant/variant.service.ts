@@ -18,7 +18,7 @@ export class VariantService {
   // create(createVariantDto: CreateVariantDto) {
   //   return 'This action adds a new variant';
   // }
-  create(createVariantDto: CreateVariantDto): Promise<Variant> {
+  async create(createVariantDto: CreateVariantDto): Promise<Variant> {
     try {
       const variant: Variant = new Variant();
       variant.nameLang = createVariantDto.nameLang;
@@ -28,41 +28,62 @@ export class VariantService {
       variant.active = createVariantDto.active;
       variant.createdBy = createVariantDto.createdBy;
 
-      return this.variantRepository.save(variant);
+      return await this.variantRepository.save(variant);
     } catch (error) {
       console.log(error);
     }
 
   }
 
-  findAll() {
+  async findAll() {
     try {
-      return this.variantRepository.find();
+      return await this.variantRepository.find();
     } catch (error) {
       console.log(error);
     }
   }
 
-  findOne(id: string) {
+  async findOne(id: string) {
     try {
-      return this.variantRepository.findOne({ where: { id } });
+
+      const exist = await this.variantRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.variantRepository.findOne({ where: { id } });
     } catch (error) {
       throw new Error('Failed to find variant');
     }
   }
 
 
-  update(id: string, updateVariantDto: UpdateVariantDto) {
+  async update(id: string, updateVariantDto: UpdateVariantDto) {
     try {
-      return this.variantRepository.update(id, updateVariantDto);
+
+      const exist = await this.variantRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.variantRepository.update(id, updateVariantDto);
     } catch (error) {
       console.log(error);
     }
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     try {
-      return this.variantRepository.delete(id);
+
+      const exist = await this.variantRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.variantRepository.delete(id);
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,3 @@
-import { Exclude, Expose } from 'class-transformer';
 import {
     IsNotEmpty,
     IsOptional,
@@ -8,10 +7,8 @@ import {
     IsDateString,
 } from 'class-validator';
 
-@Exclude()
 export class UpdateVariantDataDto {
     @IsOptional()
-    @Expose()
     @IsNotEmpty()
     @IsObject()
     nameLang: object;

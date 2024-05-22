@@ -9,4 +9,4 @@ import { VariantData } from './entities/variant-data.entity';
   controllers: [VariantDataController],
   providers: [VariantDataService],
 })
-export class VariantDataModule {}
+export class VariantDataModule { }

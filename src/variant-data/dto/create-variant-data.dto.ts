@@ -1,17 +1,13 @@
-import { Exclude, Expose } from 'class-transformer';
 import {
     IsNotEmpty,
     IsOptional,
     IsString,
     IsBoolean,
     IsObject,
-    IsDateString,
     IsDefined,
 } from 'class-validator';
 
-@Exclude()
 export class CreateVariantDataDto {
-    @Expose()
     @IsNotEmpty()
     @IsDefined()
     @IsObject()

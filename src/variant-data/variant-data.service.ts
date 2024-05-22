@@ -13,7 +13,7 @@ export class VariantDataService {
     private readonly variantDataRepository: Repository<VariantData>,
   ) { }
 
-  create(createVariantDataDto: CreateVariantDataDto) {
+  async create(createVariantDataDto: CreateVariantDataDto) {
 
     try {
       const variantData: VariantData = new VariantData();
@@ -32,40 +32,59 @@ export class VariantDataService {
       variantData.webImage = createVariantDataDto.webImage;
       variantData.mobileImage = createVariantDataDto.mobileImage;
 
-      return this.variantDataRepository.save(variantData);
+      return await this.variantDataRepository.save(variantData);
     } catch (error) {
       console.log(error);
     }
 
   }
 
-  findAll() {
+  async findAll() {
     try {
-      return this.variantDataRepository.find();
+      return await this.variantDataRepository.find();
     } catch (error) {
       console.log(error);
     }
   }
 
-  findOne(id: string) {
+  async findOne(id: string) {
     try {
-      return this.variantDataRepository.findOne({ where: { id } });
-    } catch (error) {
-      throw new Error('Failed to find variant');
-    }
-  }
+      const exist = await this.variantDataRepository.findOne({ where: { id } });
 
-  update(id: string, updateVariantDataDto: UpdateVariantDataDto) {
-    try {
-      return this.variantDataRepository.update(id, updateVariantDataDto);
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.variantDataRepository.findOne({ where: { id } });
+
     } catch (error) {
       console.log(error);
     }
   }
 
-  remove(id: string) {
+  async update(id: string, updateVariantDataDto: UpdateVariantDataDto) {
     try {
-      return this.variantDataRepository.delete(id);
+
+      const exist = await this.variantDataRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+      return await this.variantDataRepository.update(id, updateVariantDataDto);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async remove(id: string) {
+    try {
+      const exist = await this.variantDataRepository.findOne({ where: { id } });
+
+      if (!exist) {
+        return "No Data Found"
+      }
+
+      return await this.variantDataRepository.delete(id);
     } catch (error) {
       console.log(error);
     }

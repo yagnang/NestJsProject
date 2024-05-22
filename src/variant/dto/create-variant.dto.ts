@@ -1,20 +1,16 @@
-import { Exclude, Expose } from 'class-transformer';
 import {
   IsNotEmpty,
   IsOptional,
   IsString,
   IsBoolean,
-  IsJSON,
-  IsDate,
   IsDefined,
+  IsObject,
 } from 'class-validator';
-@Exclude()
 export class CreateVariantDto {
 
-  @Expose()
   @IsNotEmpty()
   @IsDefined()
-  @IsJSON()
+  @IsObject()
   nameLang: any;
 
   @IsOptional()
@@ -22,7 +18,7 @@ export class CreateVariantDto {
   dataArea: string;
 
   @IsOptional()
-  @IsJSON()
+  @IsObject()
   description: any;
 
   @IsOptional()
