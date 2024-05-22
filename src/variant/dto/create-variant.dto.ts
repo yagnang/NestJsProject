@@ -6,12 +6,14 @@ import {
   IsBoolean,
   IsJSON,
   IsDate,
+  IsDefined,
 } from 'class-validator';
 @Exclude()
 export class CreateVariantDto {
-  @IsOptional()
+
   @Expose()
   @IsNotEmpty()
+  @IsDefined()
   @IsJSON()
   nameLang: any;
 
@@ -35,15 +37,4 @@ export class CreateVariantDto {
   @IsString()
   createdBy: string;
 
-  @IsOptional()
-  @IsDate()
-  createdOn: Date;
-
-  @IsOptional()
-  @IsString()
-  updatedBy: string;
-
-  @IsOptional()
-  @IsDate()
-  updatedOn: Date;
 }

@@ -19,9 +19,6 @@ export class SkuService {
     sku.shortDescription = createSkuDto.shortDescription;
     sku.active = createSkuDto.active;
     sku.createdBy = createSkuDto.createdBy;
-    sku.createdOn = createSkuDto.createdOn;
-    sku.modifiedBy = createSkuDto.modifiedBy;
-    sku.modifiedOn = createSkuDto.modifiedOn;
     sku.code = createSkuDto.code;
     sku.productId = createSkuDto.productId;
     sku.variantsData = createSkuDto.variantsData;

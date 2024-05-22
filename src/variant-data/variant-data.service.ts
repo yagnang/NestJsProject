@@ -23,8 +23,6 @@ export class VariantDataService {
       variantData.type = createVariantDataDto.type;
       variantData.active = createVariantDataDto.active;
       variantData.createdBy = createVariantDataDto.createdBy;
-      variantData.updatedBy = createVariantDataDto.updatedBy;
-      variantData.updatedOn = createVariantDataDto.updatedOn;
       variantData.code = createVariantDataDto.code;
       variantData.hex = createVariantDataDto.hex;
       variantData.variant_id = createVariantDataDto.variant_id;

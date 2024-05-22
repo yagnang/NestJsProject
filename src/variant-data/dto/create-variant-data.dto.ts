@@ -6,12 +6,14 @@ import {
     IsBoolean,
     IsObject,
     IsDateString,
+    IsDefined,
 } from 'class-validator';
 
 @Exclude()
 export class CreateVariantDataDto {
     @Expose()
     @IsNotEmpty()
+    @IsDefined()
     @IsObject()
     nameLang: object;
 
@@ -19,7 +21,8 @@ export class CreateVariantDataDto {
     @IsString()
     dataArea: string;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsDefined()
     @IsObject()
     shortDescription: object;
 
@@ -35,19 +38,8 @@ export class CreateVariantDataDto {
     @IsString()
     createdBy: string;
 
-    @IsOptional()
-    @IsDateString()
-    createdOn: Date;
-
-    @IsOptional()
-    @IsString()
-    updatedBy: string;
-
-    @IsOptional()
-    @IsDateString()
-    updatedOn: Date;
-
     @IsNotEmpty()
+    @IsDefined()
     @IsString()
     code: string;
 
@@ -56,6 +48,7 @@ export class CreateVariantDataDto {
     hex: string;
 
     @IsNotEmpty()
+    @IsDefined()
     @IsString()
     variant_id: string;
 
@@ -68,6 +61,7 @@ export class CreateVariantDataDto {
     longDescription: object;
 
     @IsNotEmpty()
+    @IsDefined()
     @IsString()
     approvedBy: string;
 

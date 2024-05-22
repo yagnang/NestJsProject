@@ -27,9 +27,6 @@ export class VariantService {
       variant.type = createVariantDto.type;
       variant.active = createVariantDto.active;
       variant.createdBy = createVariantDto.createdBy;
-      variant.createdOn = createVariantDto.createdOn;
-      variant.updatedBy = createVariantDto.updatedBy;
-      variant.updatedOn = createVariantDto.updatedOn;
 
       return this.variantRepository.save(variant);
     } catch (error) {

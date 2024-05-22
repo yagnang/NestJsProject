@@ -1,10 +1,11 @@
 import { Exclude, Expose } from 'class-transformer';
-import { IsNotEmpty, IsOptional, IsString, IsBoolean, IsObject } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsBoolean, IsObject, IsDefined } from 'class-validator';
 
 @Exclude()
 export class CreateSkuDto {
     @Expose()
     @IsNotEmpty()
+    @IsDefined()
     @IsObject()
     nameLang: object;
 
@@ -21,16 +22,6 @@ export class CreateSkuDto {
     createdBy: string;
 
     @IsOptional()
-    createdOn: Date;
-
-    @IsOptional()
-    @IsString()
-    modifiedBy: string;
-
-    @IsOptional()
-    modifiedOn: Date;
-
-    @IsOptional()
     @IsString()
     code: string;
 
@@ -42,7 +33,8 @@ export class CreateSkuDto {
     @IsString()
     variantsData: string;
 
-    @IsOptional()
+    @IsNotEmpty()
+    @IsDefined()
     @IsObject()
     longDescription: object;
 
