@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 @Exclude()
 export class CreateVariantDto {
+  @IsOptional()
   @Expose()
   @IsNotEmpty()
   @IsJSON()

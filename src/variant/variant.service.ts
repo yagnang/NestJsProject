@@ -14,37 +14,60 @@ export class VariantService {
   constructor(
     @InjectRepository(Variant)
     private readonly variantRepository: Repository<Variant>,
-  ) {}
+  ) { }
   // create(createVariantDto: CreateVariantDto) {
   //   return 'This action adds a new variant';
   // }
   create(createVariantDto: CreateVariantDto): Promise<Variant> {
-    const variant: Variant = new Variant();
-    variant.nameLang = createVariantDto.nameLang;
-    variant.description = createVariantDto.description;
-    variant.active = createVariantDto.active;
-    variant.dataArea = createVariantDto.dataArea;
-    variant.type = createVariantDto.type;
-    variant.createdBy = createVariantDto.createdBy;
-    variant.updatedBy = createVariantDto.updatedBy;
-    variant.updatedOn = createVariantDto.updatedOn;
+    try {
+      const variant: Variant = new Variant();
+      variant.nameLang = createVariantDto.nameLang;
+      variant.dataArea = createVariantDto.dataArea;
+      variant.description = createVariantDto.description;
+      variant.type = createVariantDto.type;
+      variant.active = createVariantDto.active;
+      variant.createdBy = createVariantDto.createdBy;
+      variant.createdOn = createVariantDto.createdOn;
+      variant.updatedBy = createVariantDto.updatedBy;
+      variant.updatedOn = createVariantDto.updatedOn;
 
-    return this.variantRepository.save(variant);
+      return this.variantRepository.save(variant);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   findAll() {
-    return `This action returns all variant`;
+    try {
+      return this.variantRepository.find();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} variant`;
+  async findOne(id: string) {
+    try {
+      return await this.variantRepository.findOne({ where: { id } });
+    } catch (error) {
+      throw new Error('Failed to find variant');
+    }
   }
 
-  update(id: number, updateVariantDto: UpdateVariantDto) {
-    return `This action updates a #${id} variant`;
+
+  update(id: string, updateVariantDto: UpdateVariantDto) {
+    try {
+      return this.variantRepository.update(id, updateVariantDto);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} variant`;
+  remove(id: string) {
+    try {
+      return this.variantRepository.delete(id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

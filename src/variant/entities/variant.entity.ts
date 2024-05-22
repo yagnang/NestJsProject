@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'variant' })
 export class Variant {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -8,7 +8,7 @@ export class Variant {
   @Column('json', { default: '{}' })
   nameLang: any;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   dataArea: string;
 
   @Column('json', { default: '{}' })
@@ -17,16 +17,16 @@ export class Variant {
   @Column({ type: 'bit', nullable: true })
   type: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'boolean', nullable: true })
   active: boolean;
 
-  @Column({ length: 128, default: 'system' })
+  @Column({ type: 'varchar', length: 128, default: 'system' })
   createdBy: string;
 
   @CreateDateColumn()
   createdOn: Date;
 
-  @Column({ length: 128, default: 'system' })
+  @Column({ type: 'varchar', length: 128, default: 'system' })
   updatedBy: string;
 
   @UpdateDateColumn()
