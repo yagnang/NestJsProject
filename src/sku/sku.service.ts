@@ -33,19 +33,36 @@ export class SkuService {
     return this.skuRepository.save(sku);
   }
 
-  findAll() {
-    return `This action returns all sku`;
+  async findAll() {
+    try {
+      return this.skuRepository.find();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} sku`;
+  async findOne(id: string) {
+    try {
+      return await this.skuRepository.findOne({ where: { id } });
+    } catch (error) {
+      throw new Error('Failed to find variant');
+    }
   }
 
-  update(id: number, updateSkuDto: UpdateSkuDto) {
-    return `This action updates a #${id} sku`;
+  update(id: string, updateSkuDto: UpdateSkuDto) {
+    try {
+      return this.skuRepository.update(id, updateSkuDto);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} sku`;
+  remove(id: string) {
+    try {
+      return this.skuRepository.delete(id)
+        ;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

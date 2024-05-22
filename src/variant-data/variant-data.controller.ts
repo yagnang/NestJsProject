@@ -19,16 +19,16 @@ export class VariantDataController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.variantDataService.findOne(+id);
+    return this.variantDataService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVariantDataDto: UpdateVariantDataDto) {
-    return this.variantDataService.update(+id, updateVariantDataDto);
+    return this.variantDataService.update(id, updateVariantDataDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.variantDataService.remove(+id);
+    return this.variantDataService.remove(id);
   }
 }

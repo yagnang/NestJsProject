@@ -5,7 +5,7 @@ import { UpdateSkuDto } from './dto/update-sku.dto';
 
 @Controller('sku')
 export class SkuController {
-  constructor(private readonly skuService: SkuService) {}
+  constructor(private readonly skuService: SkuService) { }
 
   @Post()
   create(@Body() createSkuDto: CreateSkuDto) {
@@ -19,16 +19,18 @@ export class SkuController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.skuService.findOne(+id);
+    return this.skuService.findOne(id)
+      ;
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSkuDto: UpdateSkuDto) {
-    return this.skuService.update(+id, updateSkuDto);
+    return this.skuService.update(id, updateSkuDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.skuService.remove(+id);
+    return this.skuService.remove(id)
+      ;
   }
 }

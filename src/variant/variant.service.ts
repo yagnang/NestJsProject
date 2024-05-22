@@ -46,9 +46,9 @@ export class VariantService {
     }
   }
 
-  async findOne(id: string) {
+  findOne(id: string) {
     try {
-      return await this.variantRepository.findOne({ where: { id } });
+      return this.variantRepository.findOne({ where: { id } });
     } catch (error) {
       throw new Error('Failed to find variant');
     }

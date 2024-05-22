@@ -15,40 +15,61 @@ export class VariantDataService {
 
   create(createVariantDataDto: CreateVariantDataDto) {
 
-    const variantData: VariantData = new VariantData();
-    variantData.nameLang = createVariantDataDto.nameLang;
-    variantData.dataArea = createVariantDataDto.dataArea;
-    variantData.shortDescription = createVariantDataDto.shortDescription;
-    variantData.type = createVariantDataDto.type;
-    variantData.active = createVariantDataDto.active;
-    variantData.createdBy = createVariantDataDto.createdBy;
-    variantData.updatedBy = createVariantDataDto.updatedBy;
-    variantData.updatedOn = createVariantDataDto.updatedOn;
-    variantData.code = createVariantDataDto.code;
-    variantData.hex = createVariantDataDto.hex;
-    variantData.variant_id = createVariantDataDto.variant_id;
-    variantData.parent_variant_id = createVariantDataDto.parent_variant_id;
-    variantData.longDescription = createVariantDataDto.longDescription;
-    variantData.approvedBy = createVariantDataDto.approvedBy;
-    variantData.webImage = createVariantDataDto.webImage;
-    variantData.mobileImage = createVariantDataDto.mobileImage;
+    try {
+      const variantData: VariantData = new VariantData();
+      variantData.nameLang = createVariantDataDto.nameLang;
+      variantData.dataArea = createVariantDataDto.dataArea;
+      variantData.shortDescription = createVariantDataDto.shortDescription;
+      variantData.type = createVariantDataDto.type;
+      variantData.active = createVariantDataDto.active;
+      variantData.createdBy = createVariantDataDto.createdBy;
+      variantData.updatedBy = createVariantDataDto.updatedBy;
+      variantData.updatedOn = createVariantDataDto.updatedOn;
+      variantData.code = createVariantDataDto.code;
+      variantData.hex = createVariantDataDto.hex;
+      variantData.variant_id = createVariantDataDto.variant_id;
+      variantData.parent_variant_id = createVariantDataDto.parent_variant_id;
+      variantData.longDescription = createVariantDataDto.longDescription;
+      variantData.approvedBy = createVariantDataDto.approvedBy;
+      variantData.webImage = createVariantDataDto.webImage;
+      variantData.mobileImage = createVariantDataDto.mobileImage;
 
-    return this.variantDataRepository.save(variantData);
+      return this.variantDataRepository.save(variantData);
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   findAll() {
-    return `This action returns all variantData`;
+    try {
+      return this.variantDataRepository.find();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} variantDatum`;
+  findOne(id: string) {
+    try {
+      return this.variantDataRepository.findOne({ where: { id } });
+    } catch (error) {
+      throw new Error('Failed to find variant');
+    }
   }
 
-  update(id: number, updateVariantDataDto: UpdateVariantDataDto) {
-    return `This action updates a #${id} variantDatum`;
+  update(id: string, updateVariantDataDto: UpdateVariantDataDto) {
+    try {
+      return this.variantDataRepository.update(id, updateVariantDataDto);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} variantDatum`;
+  remove(id: string) {
+    try {
+      return this.variantDataRepository.delete(id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
