@@ -33,4 +33,6 @@ export class Variant {
   @UpdateDateColumn()
   updatedOn: Date;
 
+  @OneToMany(() => VariantData, variantData => variantData.variant)
+  variantData: VariantData[]
 }

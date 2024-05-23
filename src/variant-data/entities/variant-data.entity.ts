@@ -57,4 +57,8 @@ export class VariantData {
     @Column({ type: 'varchar', length: 255, nullable: true })
     mobileImage: string;
 
+    @ManyToOne(() => Variant, variant => variant.variantData, { onDelete: "RESTRICT" })
+    @JoinColumn({ name: 'variant_id' })
+    variant: Variant
+
 }
