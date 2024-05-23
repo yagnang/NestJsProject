@@ -11,28 +11,30 @@ import { SkuModule } from './sku/sku.module';
 import { VariantData } from './variant-data/entities/variant-data.entity';
 import { Sku } from './sku/entities/sku.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { dataSourceOptions } from './db/data-source';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forRoot({
-        isGlobal: true,
-        envFilePath: ".env.config.local",
-        // envFilePath: ".prod.env"
-      })],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: +configService.get('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_DATABASE'),
-        synchronize: true,
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        logging: true,
-      }),
-      inject: [ConfigService],
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule.forRoot({
+    //     isGlobal: true,
+    //     envFilePath: ".env.config.local",
+    //     // envFilePath: ".prod.env"
+    //   })],
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'postgres',
+    //     host: configService.get('DB_HOST'),
+    //     port: +configService.get('DB_PORT'),
+    //     username: configService.get('DB_USERNAME'),
+    //     password: configService.get('DB_PASSWORD'),
+    //     database: configService.get('DB_DATABASE'),
+    //     synchronize: true,
+    //     entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    //     logging: true,
+    //   }),
+    //   inject: [ConfigService],
+    // }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     VariantModule,
     VariantDataModule,
